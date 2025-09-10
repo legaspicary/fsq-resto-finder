@@ -8,6 +8,6 @@ declare module "@api/fsq-developers-places" {
         rating: number,
         near: string,
         'X-Places-Api-Version': '2025-06-17'
-    })
+    }): Promise<unknown>
     export const version: string;
 } expor
