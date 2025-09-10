@@ -1,25 +1,25 @@
 import express from 'express'
 // TODO: why need .js
 import { ExecuteApiQuerySchema } from './schemas/ExecuteApiSchema.js'
-import { runAgent } from './langgraph/agent.js';
+import { askRestoAgent } from './langgraph/agent.js';
 
 const app = express()
 
 // TODO: check code in query is pioneerdevai
 app.get('/api/execute', async (req, res) => {
-  const parsedQuery = ExecuteApiQuerySchema.parse(req.query);
-  if (parsedQuery.code !== 'pioneerdevai') {
+  const { code, message } = ExecuteApiQuerySchema.parse(req.query);
+  if (code !== 'pioneerdevai') {
     res.sendStatus(401);
     return;
   }
 
-  await runAgent();
+  const agentResult = await askRestoAgent(message);
 
   // TODO: add llm layer
 
   // TODO: add foursquare layer
 
-  res.send('Hello Worlda')
+  res.send(agentResult)
 })
 
 app.listen(3000, () => {
