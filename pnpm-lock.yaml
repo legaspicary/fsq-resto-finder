@@ -26,6 +26,9 @@ importers:
       typescript:
         specifier: 5.9.2
         version: 5.9.2
+      v2025-06-17#3yhsfop1jme09k6eu:
+        specifier: link:@fsq-developers-places/v2025-06-17#3yhsfop1jme09k6eu
+        version: link:@fsq-developers-places/v2025-06-17#3yhsfop1jme09k6eu
       zod:
         specifier: 4.1.5
         version: 4.1.5
