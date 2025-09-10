@@ -11,7 +11,6 @@ dotenv.config()
 
 export async function askRestoAgent(inputMsg: string): Promise<z.infer<typeof FourSquareParamsSchema>> {
     const apiKey = process.env.GOOGLE_API_KEY
-
     if (!apiKey) throw new Error("API KEY is not defined!");
 
     const model = new ChatGoogleGenerativeAI({
