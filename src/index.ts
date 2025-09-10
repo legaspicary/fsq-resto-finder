@@ -2,10 +2,10 @@ import express from 'express'
 // TODO: why need .js
 import { ExecuteRequestQueryApiSchema } from './schemas/ExecuteRequestApiSchema.js'
 import { askRestoAgent } from './langgraph/agent.js';
+import { lookupRestaurant } from './foursquare/places-search.js';
 
 const app = express()
 
-// TODO: check code in query is pioneerdevai
 app.get('/api/execute', async (req, res) => {
   const { code, message } = ExecuteRequestQueryApiSchema.parse(req.query);
   if (code !== 'pioneerdevai') {
@@ -14,12 +14,16 @@ app.get('/api/execute', async (req, res) => {
   }
 
   const agentResult = await askRestoAgent(message);
+  const lookupResult = await lookupRestaurant({
+    action: "restaurant_search",
+    parameters: agentResult
+  })
+  const restaurantDetails = lookupResult.results.map(r => ({
+    name: r.name,
+    address: r.location.address
+  }))
 
-  // TODO: add llm layer
-
-  // TODO: add foursquare layer
-
-  res.send(agentResult)
+  res.send(restaurantDetails)
 })
 
 app.listen(3000, () => {
