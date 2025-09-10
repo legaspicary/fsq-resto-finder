@@ -4,7 +4,7 @@ export const FourSquareResultSchema = z.object({
     results: z.object({
         name: z.string(),
         location: z.object({
-            address: z.string()
+            address: z.string().optional()
         }),
         // rating: z.number(), <-- unavailable at pro tier with free 10K calls
         // price: z.number(), <-- unavialable at pro tier

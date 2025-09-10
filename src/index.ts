@@ -1,10 +1,10 @@
 import express from 'express'
-// TODO: why need .js
+import { type Express } from 'express';
 import { ExecuteRequestQueryApiSchema } from './schemas/ExecuteRequestApiSchema.js'
 import { askRestoAgent } from './langgraph/agent.js';
 import { lookupRestaurant } from './foursquare/places-search.js';
 
-const app = express()
+const app: Express = express()
 
 app.get('/api/execute', async (req, res) => {
   const { code, message } = ExecuteRequestQueryApiSchema.parse(req.query);
