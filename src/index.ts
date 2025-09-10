@@ -1,13 +1,13 @@
 import express from 'express'
 // TODO: why need .js
-import { ExecuteApiQuerySchema } from './schemas/ExecuteApiSchema.js'
+import { ExecuteRequestQueryApiSchema } from './schemas/ExecuteRequestApiSchema.js'
 import { askRestoAgent } from './langgraph/agent.js';
 
 const app = express()
 
 // TODO: check code in query is pioneerdevai
 app.get('/api/execute', async (req, res) => {
-  const { code, message } = ExecuteApiQuerySchema.parse(req.query);
+  const { code, message } = ExecuteRequestQueryApiSchema.parse(req.query);
   if (code !== 'pioneerdevai') {
     res.sendStatus(401);
     return;
