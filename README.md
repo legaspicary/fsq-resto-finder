@@ -12,5 +12,5 @@
 ### Assumptions / Limitations
 - FourSquare Places have moved some of the returned fields to a premium tier and isn't available at the free pro tier
 - Could be more performant and controlled on the LLM agent
-- Official FourSquare Places API `nodejs` api package doesn't seem to work with this build and resorted to a manual fetch
+- Official FourSquare Places API `nodejs` api package doesn't seem to work with this build and resorted to a manual fetch (beware of `npx api install "@fsq-developers-places/v2025-06-17#3yhsfop1jme09k6eu"`)
 - Could be tested more thoroughly and handle errors well (e.g. don't display actual errors, like a production app)
